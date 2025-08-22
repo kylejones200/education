@@ -1,0 +1,85 @@
+{{ define "main" }}
+  <section class="section section--scholarships" style="padding:2rem 0;">
+    <div class="container">
+      <header style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+        <h1 style="margin:0;">{{ .Title }}</h1>
+        <div style="display:flex;gap:.5rem;align-items:center;">
+          <input id="sch-search" type="search" placeholder="Search scholarships..." style="padding:.5rem .65rem;border:1px solid #d1d5db;border-radius:8px;min-width:240px;"/>
+          <select id="sch-filter-elig" style="padding:.5rem .65rem;border:1px solid #d1d5db;border-radius:8px;">
+            <option value="">All Eligibility</option>
+            <option>Undergraduate</option>
+            <option>Graduate</option>
+            <option>Sophomore</option>
+            <option>Junior</option>
+            <option>Senior</option>
+          </select>
+          <select id="sch-filter-year" style="padding:.5rem .65rem;border:1px solid #d1d5db;border-radius:8px;">
+            <option value="">Any Apply Year</option>
+            <option>Sophomore</option>
+            <option>Junior</option>
+            <option>Senior</option>
+          </select>
+        </div>
+      </header>
+
+      <div id="sch-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;">
+        {{ range .Pages }}
+          {{ $url := .RelPermalink }}
+          {{ $ext := .Params.external_url }}
+          {{ $apply := .Params.apply_year }}
+          {{ $elig := .Params.eligibility }}
+          {{ $award := .Params.award }}
+          {{ $deadline := .Params.deadline }}
+          {{ $tags := delimit (slice) "," }}
+          <article class="sch-card" data-title="{{ .Title | plainify }}" data-elig="{{ with $elig }}{{ delimit . "," }}{{ end }}" data-apply="{{ $apply }}" style="border:1px solid #e5e7eb;border-radius:12px;background:#fff;overflow:hidden;display:flex;flex-direction:column;">
+            <div style="padding:1rem;display:flex;flex-direction:column;gap:.5rem;">
+              <h3 style="margin:0 0 .25rem 0;font-size:1.1rem;"><a href="{{ $url }}" style="text-decoration:none;color:inherit;">{{ .Title }}</a></h3>
+              <div style="display:flex;flex-wrap:wrap;gap:.35rem;">
+                {{ with $apply }}<span style="font-size:.75rem;background:#eef2ff;color:#3730a3;padding:.15rem .45rem;border-radius:999px;">Apply: {{ . }}</span>{{ end }}
+                {{ with $deadline }}<span style="font-size:.75rem;background:#ecfeff;color:#155e75;padding:.15rem .45rem;border-radius:999px;">Deadline: {{ . }}</span>{{ end }}
+                {{ with $award }}<span style="font-size:.75rem;background:#f0fdf4;color:#166534;padding:.15rem .45rem;border-radius:999px;">Award: {{ . }}</span>{{ end }}
+              </div>
+              <p style="margin:.25rem 0 0 0;color:#444;">{{ .Summary | plainify | default (truncate (.Content | plainify) 120) }}</p>
+            </div>
+            <div style="margin-top:auto;padding:1rem;border-top:1px solid #f3f4f6;display:flex;gap:.5rem;justify-content:flex-end;">
+              <a href="{{ $url }}" class="btn" style="text-decoration:none;background:#111827;color:#fff;border-radius:8px;padding:.45rem .75rem;font-size:.9rem;">Details</a>
+              {{ with $ext }}<a href="{{ . }}" class="btn" target="_blank" rel="noopener" style="text-decoration:none;background:#0ea5e9;color:#fff;border-radius:8px;padding:.45rem .75rem;font-size:.9rem;">Apply ↗</a>{{ end }}
+            </div>
+          </article>
+        {{ end }}
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+      <script>
+        (function(){
+          const cards = [...document.querySelectorAll('.sch-card')];
+          const data = cards.map((el,idx)=>({
+            idx,
+            title: el.dataset.title || '',
+            elig: (el.dataset.elig||'').split(',').filter(Boolean),
+            apply: el.dataset.apply || ''
+          }));
+
+          const fuse = new Fuse(data, { keys:['title','elig','apply'], threshold:0.3, includeScore:true });
+          const search = document.getElementById('sch-search');
+          const elig = document.getElementById('sch-filter-elig');
+          const year = document.getElementById('sch-filter-year');
+
+          function run(){
+            let curr = data;
+            const q = (search.value||'').trim();
+            const fe = (elig.value||'').trim();
+            const fy = (year.value||'').trim();
+            if(q){ curr = fuse.search(q).map(r=>data[r.item.idx]); }
+            if(fe){ curr = curr.filter(x=>x.elig.includes(fe)); }
+            if(fy){ curr = curr.filter(x=>x.apply===fy); }
+            const show = new Set(curr.map(x=>x.idx));
+            cards.forEach((el,i)=>{ el.style.display = show.size===0 || show.has(i) ? '' : 'none';});
+          }
+          [search,elig,year].forEach(el=>el&&el.addEventListener('input',run));
+          run();
+        })();
+      </script>
+    </div>
+  </section>
+{{ end }}

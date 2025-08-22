@@ -5,6 +5,11 @@ hero_unsplash:
   orientation: "landscape"
   height: "55vh"
   emoji: "🛡️"
+external_url: "http://www.orau.gov/dhsed/04ugrad.htm"
+apply_year: "Sophomore"
+eligibility: ["Undergraduate", "Sophomore"]
+award: "TBD"
+deadline: "TBD"
 ---
 The [DHS Rising Juniors Fellowship](http://www.orau.gov/dhsed/04ugrad.htm), sponsored by the Department of Homeland Security, is for students who like to mix policy with problem-solving. Think of it as a summer abroad program, except instead of sipping espresso in Rome, you’ll be analyzing threats, resilience, and national security challenges in Washington. The program gives sophomores a front-row seat to the machinery of government security.
 

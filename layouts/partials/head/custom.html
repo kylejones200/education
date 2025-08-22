@@ -1,3 +1,52 @@
 {{/* Extra head tags: favicon wiring */}}
 <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
 <link rel="shortcut icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+
+{{/* Canonical URL */}}
+{{ $canon := .Permalink | default (printf "%s" .RelPermalink) }}
+<link rel="canonical" href="{{ $canon }}" />
+
+{{/* Derive title/description/image */}}
+{{ $title := .Title | default site.Title }}
+{{ $desc := .Params.description | default (.Summary | plainify | truncate 180) | default site.Params.description }}
+{{ $image := "" }}
+{{ with .Params.hero_unsplash }}{{ with .image_url }}{{ $image = . }}{{ end }}{{ end }}
+{{ if not $image }}{{ $image = ( "favicon.svg" | relURL ) }}{{ end }}
+
+{{/* Open Graph */}}
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ $title }}">
+{{ with $desc }}<meta property="og:description" content="{{ . }}">{{ end }}
+<meta property="og:url" content="{{ $canon }}">
+{{ with $image }}<meta property="og:image" content="{{ . }}">{{ end }}
+
+{{/* Twitter */}}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+{{ with $desc }}<meta name="twitter:description" content="{{ . }}">{{ end }}
+{{ with $image }}<meta name="twitter:image" content="{{ . }}">{{ end }}
+
+{{/* JSON-LD: Article for pages, BreadcrumbList for sections */}}
+{{ if .IsPage }}
+  {{ $article := dict
+      "@context" "https://schema.org"
+      "@type" "Article"
+      "headline" $title
+      "description" $desc
+      "url" $canon
+      "image" (slice $image)
+  }}
+  <script type="application/ld+json">{{ $article | jsonify }}</script>
+{{ else }}
+  {{ $items := slice }}
+  {{ $items = $items | append (dict "@type" "ListItem" "position" 1 "name" site.Title "item" site.BaseURL) }}
+  {{ $items = $items | append (dict "@type" "ListItem" "position" 2 "name" .Title "item" $canon) }}
+  {{ $crumb := dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $items }}
+  <script type="application/ld+json">{{ $crumb | jsonify }}</script>
+{{ end }}
+
+{{/* Global Search: config + scripts */}}
+<meta name="search-index" content="{{ "index.json" | relURL }}">
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+<script src="{{ "/js/site-search.js" | relURL }}" defer></script>

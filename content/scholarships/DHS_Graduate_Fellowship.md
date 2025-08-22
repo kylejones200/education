@@ -5,6 +5,11 @@ hero_unsplash:
   orientation: "landscape"
   height: "55vh"
   emoji: "🎓"
+external_url: "http://www.orau.gov/dhsed/04grad.htm"
+apply_year: "Senior or 1st-year Grad"
+eligibility: ["Graduate", "Senior"]
+award: "Tuition + stipend + internships"
+deadline: "TBD"
 ---
 If the Rising Juniors program is the appetizer, the [DHS Graduate Fellowship](http://www.orau.gov/dhsed/04grad.htm) is the main course. Sponsored again by Homeland Security, it supports seniors heading into graduate school or students already in their first year of grad studies. This one isn’t a taste—it’s a meal ticket for an advanced education in areas DHS cares about.
 

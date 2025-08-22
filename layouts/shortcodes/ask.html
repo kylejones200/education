@@ -1,0 +1,12 @@
+<div class="ask-widget" data-index="{{ "index.json" | relURL }}" style="border:1px solid #e5e7eb;border-radius:12px;background:#fff;padding:1rem;max-width:860px;margin:1rem auto;">
+  <h2 style="margin:0 0 .5rem 0;">Ask this site</h2>
+  <p style="margin:.25rem 0 1rem 0;color:#6b7280;font-size:.95rem;">Type a question to find the most relevant passages from across the site. 100% private, no external services.</p>
+  <div style="display:flex;gap:.5rem;align-items:center;">
+    <input id="ask-input" type="search" placeholder="e.g., Which scholarships are for sophomores?" style="flex:1;padding:.6rem .7rem;border:1px solid #d1d5db;border-radius:8px;"/>
+    <button id="ask-btn" style="cursor:pointer;background:#111827;color:#fff;border:none;border-radius:8px;padding:.6rem 1rem;font-weight:600;">Search</button>
+  </div>
+  <div id="ask-results" style="margin-top:1rem;display:grid;gap:.75rem;"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+<script src="{{ "/js/ask.js" | relURL }}" defer></script>

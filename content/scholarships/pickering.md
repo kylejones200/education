@@ -5,6 +5,11 @@ hero_unsplash:
   orientation: "landscape"
   height: "55vh"
   emoji: "🌐"
+external_url: "http://www.woodrow.org/public-policy/description_of_service.html"
+apply_year: "Sophomore (UG) / Senior (Grad)"
+eligibility: ["Undergraduate", "Graduate", "Sophomore", "Senior"]
+award: "Tuition, internships, pathway to Foreign Service"
+deadline: "TBD"
 ---
 The [Pickering Fellowships](http://www.woodrow.org/public-policy/description_of_service.html) are the express train into the U.S. Foreign Service. Sponsored by the State Department and the Woodrow Wilson Foundation, they come in two flavors: the undergraduate fellowship (apply sophomore year) and the graduate fellowship (apply senior year). Both cover tuition, provide internships, and guarantee a spot in the State Department once you finish your degree. In other words, you’re not just applying for a fellowship—you’re applying for a career.
 

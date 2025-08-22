@@ -5,6 +5,11 @@ hero_unsplash:
   orientation: "landscape"
   height: "55vh"
   emoji: "📰"
+external_url: "http://www.defenddemocracy.org/programs/programs.htm"
+apply_year: "Sophomore–Senior"
+eligibility: ["Undergraduate", "Sophomore", "Junior", "Senior"]
+award: "Seminars, research, internships"
+deadline: "TBD"
 ---
 
 The [Undergraduate Fellowship on Terrorism](http://www.defenddemocracy.org/programs/programs.htm) is sponsored by the Foundation for the Defense of Democracies. Don’t let the heavy name scare you—it’s an opportunity for undergrads to dive into the policy world of terrorism and national security. The fellowship combines seminars, research, and internships, putting students face-to-face with experts who work on today’s global conflicts.

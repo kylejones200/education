@@ -5,6 +5,11 @@ hero_unsplash:
   orientation: "landscape"
   height: "55vh"
   emoji: "🌍"
+external_url: "http://www.uncfsp.org/iipp"
+apply_year: "Sophomore"
+eligibility: ["Undergraduate", "Sophomore", "Underrepresented"]
+award: "Multi-year training, internships, study abroad"
+deadline: "TBD"
 ---
 The [IIPP Fellowship](http://www.uncfsp.org/iipp) is the United Negro College Fund’s way of saying: America needs more diverse voices in international affairs. Sponsored by the UNCF Special Programs Corporation, it’s a long-term investment in sophomores who want to tackle global challenges. Instead of a single summer, it strings together training, mentoring, internships, and study abroad over several years.
 

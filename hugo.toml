@@ -5,9 +5,26 @@ title = "Education"
 [pagination]
   pagerSize = 10
 
+[related]
+  includeNewer = true
+  threshold = 80
+  toLower = true
+  [[related.indices]]
+    name = "keywords"
+    weight = 100
+  [[related.indices]]
+    name = "title"
+    weight = 40
+  [[related.indices]]
+    name = "date"
+    weight = 10
+
 [module]
   [[module.imports]]
     path = "github.com/zerostaticthemes/hugo-serif-theme"
+
+[outputs]
+  home = ["HTML", "JSON"]
 
 [params]
   # Optional: set a default description used in meta tags

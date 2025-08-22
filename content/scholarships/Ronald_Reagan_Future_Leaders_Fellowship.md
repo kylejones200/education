@@ -5,6 +5,11 @@ hero_unsplash:
   orientation: "landscape"
   height: "55vh"
   emoji: "🏛️"
+external_url: "http://www.thephillipsfoundation.org/futureleaders.htm"
+apply_year: "Sophomore or Junior"
+eligibility: ["Undergraduate", "Sophomore", "Junior"]
+award: "Stipends, mentorship, publication opportunities"
+deadline: "TBD"
 ---
 
 The [Reagan Fellowship](http://www.thephillipsfoundation.org/futureleaders.htm), sponsored by the Phillips Foundation, is less about learning policy mechanics and more about building ideological firepower. It supports sophomores and juniors who show leadership potential and an interest in conservative thought. Instead of interning in the State Department, you may find yourself writing policy papers, attending seminars, or rubbing elbows with opinion makers in Washington.

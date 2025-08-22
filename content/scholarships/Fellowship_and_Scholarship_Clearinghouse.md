@@ -5,6 +5,11 @@ hero_unsplash:
   orientation: "landscape"
   height: "50vh"
   emoji: "🔎"
+external_url: "http://www.idealist.org/career/fellowship.html"
+apply_year: ""
+eligibility: ["All"]
+award: "Directory of programs"
+deadline: "Varies"
 ---
 
 This isn’t a fellowship in itself—it’s the Lonely Planet guidebook for finding them. Hosted by [Idealist.org’s Fellowship and Scholarship Clearinghouse](http://www.idealist.org/career/fellowship.html), it’s a database of fellowships and scholarships in public service. Instead of wandering aimlessly, you can search and compare opportunities, deadlines, and requirements in one place.

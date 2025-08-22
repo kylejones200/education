@@ -1,0 +1,17 @@
+[
+{{- $pages := site.RegularPages -}}
+{{- $first := true -}}
+{{- range $pages }}
+  {{- if not $first }},{{ end -}}
+  {{- $first = false -}}
+  {
+    "title": {{ .Title | jsonify }},
+    "permalink": {{ .Permalink | jsonify }},
+    "relpermalink": {{ .RelPermalink | jsonify }},
+    "section": {{ .Section | jsonify }},
+    "summary": {{ ( .Summary | plainify ) | jsonify }},
+    "content": {{ ( .Plain | truncate 2000 ) | jsonify }},
+    "params": {{ .Params | jsonify }}
+  }
+{{- end }}
+]

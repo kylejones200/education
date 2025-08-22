@@ -5,6 +5,11 @@ hero_unsplash:
   orientation: "landscape"
   height: "55vh"
   emoji: "📊"
+external_url: "http://www.ppiaprogram.org"
+apply_year: "Junior"
+eligibility: ["Undergraduate", "Junior", "Public Service"]
+award: "Summer institute, stipend, grad school benefits"
+deadline: "TBD"
 ---
 
 The [PPIA Fellowship](http://www.ppiaprogram.org) is like a summer boot camp for policy nerds. Supported by APPAM, APSIA, and NASPAA (all acronyms that sound scarier than they are), it’s designed to prepare undergraduates for graduate school in public policy and international affairs. It’s not just about money—it’s about exposure. You’ll spend the summer at a top policy school, surrounded by faculty and peers who speak the same language of budgets, diplomacy, and statistics.

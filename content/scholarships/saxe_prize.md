@@ -6,6 +6,11 @@ hero_unsplash:
   orientation: "landscape"
   height: "50vh"
   emoji: "🎖️"
+external_url: "http://www.jwsaxefund.org/home.html"
+apply_year: "Before internship"
+eligibility: ["Undergraduate", "Graduate", "Public Service"]
+award: "Stipend for unpaid internships"
+deadline: "Before internship start"
 ---
 
 The [J.W. Saxe Prize](http://www.jwsaxefund.org/home.html) is a small but mighty award. It helps cover expenses for unpaid internships in public service. Picture this: you land your dream internship in D.C., but it doesn’t pay. Instead of working double shifts at Starbucks to cover rent, the Saxe Prize helps fund your summer so you can focus on the work that matters.
