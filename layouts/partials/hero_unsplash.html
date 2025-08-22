@@ -5,21 +5,36 @@ Reads params from .Page.Params.hero_unsplash
 
 {{ $p := .Page.Params.hero_unsplash }}
 {{ if $p }}
+  {{/* Defaults */}}
   {{ $sec := lower .Page.Section }}
-  {{ $defaultQuery := cond (eq $sec "schools") (printf "%s campus" .Page.Title) .Page.Title }}
-  {{ $query := cond (and $p (index $p "query")) (index $p "query") $defaultQuery }}
-  {{ $height := cond (and $p (index $p "height")) (index $p "height") "60vh" }}
-  {{ $title := cond (and $p (index $p "title")) (index $p "title") site.Title }}
-  {{ $subtitle := cond (and $p (index $p "subtitle")) (index $p "subtitle") nil }}
-  {{ $emoji := cond (and $p (index $p "emoji")) (index $p "emoji") "🎓" }}
-  {{ $disable := and $p (eq (index $p "disable") true) }}
+  {{ $defaultQuery := (printf "%s" .Page.Title) }}
+  {{ if eq $sec "schools" }}{{ $defaultQuery = (printf "%s campus" .Page.Title) }}{{ end }}
+  {{ $query := $defaultQuery }}
+  {{ $height := "60vh" }}
+  {{ $title := site.Title }}
+  {{ $subtitle := nil }}
+  {{ $emoji := "🎓" }}
+  {{ $disable := false }}
+
+  {{ with $p.query }}{{ $query = . }}{{ end }}
+  {{ with $p.height }}{{ $height = . }}{{ end }}
+  {{ with $p.title }}{{ $title = . }}{{ end }}
+  {{ with $p.subtitle }}{{ $subtitle = . }}{{ end }}
+  {{ with $p.emoji }}{{ $emoji = . }}{{ end }}
+  {{ with $p.disable }}{{ $disable = . }}{{ end }}
 
   {{/* Prefer pre-fetched values from front matter if available */}}
-  {{ $prefetchedUrl := cond (and $p (index $p "image_url")) (index $p "image_url") nil }}
-  {{ $prefetchedAlt := cond (and $p (index $p "image_alt")) (index $p "image_alt") $query }}
-  {{ $prefetchCreditName := cond (and $p (index $p "credit_name")) (index $p "credit_name") nil }}
-  {{ $prefetchCreditProfile := cond (and $p (index $p "credit_profile")) (index $p "credit_profile") "https://unsplash.com" }}
-  {{ $prefetchPhotoLink := cond (and $p (index $p "photo_link")) (index $p "photo_link") "https://unsplash.com" }}
+  {{ $prefetchedUrl := nil }}
+  {{ $prefetchedAlt := $query }}
+  {{ $prefetchCreditName := nil }}
+  {{ $prefetchCreditProfile := "https://unsplash.com" }}
+  {{ $prefetchPhotoLink := "https://unsplash.com" }}
+
+  {{ with $p.image_url }}{{ $prefetchedUrl = . }}{{ end }}
+  {{ with $p.image_alt }}{{ $prefetchedAlt = . }}{{ end }}
+  {{ with $p.credit_name }}{{ $prefetchCreditName = . }}{{ end }}
+  {{ with $p.credit_profile }}{{ $prefetchCreditProfile = . }}{{ end }}
+  {{ with $p.photo_link }}{{ $prefetchPhotoLink = . }}{{ end }}
 
   {{ if $prefetchedUrl }}
     <section class="hero hero--unsplash" style="position: relative; height: {{ $height }};">

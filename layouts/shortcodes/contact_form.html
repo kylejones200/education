@@ -14,9 +14,21 @@ Config (optional) in hugo.toml:
 */}}
 
 {{ $p := site.Params.contact }}
-{{ $endpoint := .Get "endpoint" | default (cond $p (index $p "formspree_endpoint") nil) }}
-{{ $email := .Get "email" | default (cond $p (index $p "email") nil) }}
-{{ $redirect := .Get "redirect" | default (cond $p (index $p "redirect") "/thanks/") }}
+{{ $endpoint := .Get "endpoint" }}
+{{ if not $endpoint }}
+  {{ with $p }}{{ with .formspree_endpoint }}{{ $endpoint = . }}{{ end }}{{ end }}
+{{ end }}
+
+{{ $email := .Get "email" }}
+{{ if not $email }}
+  {{ with $p }}{{ with .email }}{{ $email = . }}{{ end }}{{ end }}
+{{ end }}
+
+{{ $redirect := .Get "redirect" }}
+{{ if not $redirect }}
+  {{ with $p }}{{ with .redirect }}{{ $redirect = . }}{{ end }}{{ end }}
+{{ end }}
+{{ if not $redirect }}{{ $redirect = "/thanks/" }}{{ end }}
 
 {{ if $endpoint }}
   <form action="{{ $endpoint }}" method="POST" style="max-width:720px;margin:1rem auto;padding:1rem;border:1px solid #e5e7eb;border-radius:12px;background:#fff;">
