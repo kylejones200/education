@@ -1,6 +1,18 @@
 {{/* Extra head tags: favicon wiring */}}
 <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
 <link rel="shortcut icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+{{ if fileExists "static/favicon-32x32.png" }}
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}">
+{{ end }}
+{{ if fileExists "static/favicon-16x16.png" }}
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}">
+{{ end }}
+{{ if fileExists "static/apple-touch-icon.png" }}
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}">
+{{ end }}
+{{ if fileExists "static/site.webmanifest" }}
+  <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
+{{ end }}
 
 {{/* Canonical URL */}}
 {{ $canon := .Permalink | default (printf "%s" .RelPermalink) }}
@@ -21,11 +33,7 @@
 <meta property="og:url" content="{{ $canon }}">
 {{ with $image }}<meta property="og:image" content="{{ . }}">{{ end }}
 
-{{/* Twitter */}}
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ $title }}">
-{{ with $desc }}<meta name="twitter:description" content="{{ . }}">{{ end }}
-{{ with $image }}<meta name="twitter:image" content="{{ . }}">{{ end }}
+{{/* Twitter tags omitted per site preference (no Twitter account) */}}
 
 {{/* JSON-LD: Article for pages, BreadcrumbList for sections */}}
 {{ if .IsPage }}

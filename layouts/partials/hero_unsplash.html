@@ -12,7 +12,7 @@ Reads params from .Page.Params.hero_unsplash
   {{ $query := $defaultQuery }}
   {{ $height := "60vh" }}
   {{ $title := site.Title }}
-  {{ $subtitle := nil }}
+  {{ $subtitle := "" }}
   {{ $emoji := "🎓" }}
   {{ $disable := false }}
 
@@ -24,9 +24,9 @@ Reads params from .Page.Params.hero_unsplash
   {{ with $p.disable }}{{ $disable = . }}{{ end }}
 
   {{/* Prefer pre-fetched values from front matter if available */}}
-  {{ $prefetchedUrl := nil }}
+  {{ $prefetchedUrl := "" }}
   {{ $prefetchedAlt := $query }}
-  {{ $prefetchCreditName := nil }}
+  {{ $prefetchCreditName := "" }}
   {{ $prefetchCreditProfile := "https://unsplash.com" }}
   {{ $prefetchPhotoLink := "https://unsplash.com" }}
 

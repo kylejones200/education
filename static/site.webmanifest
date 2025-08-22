@@ -1,0 +1,14 @@
+{
+  "name": "Education",
+  "short_name": "Education",
+  "start_url": "/education/",
+  "scope": "/education/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#111827",
+  "icons": [
+    { "src": "/education/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/education/favicon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/education/apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

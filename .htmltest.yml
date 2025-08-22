@@ -1,0 +1,20 @@
+checkExternal: true
+EnforceHTTPS: true
+IgnoreAltMissing: false
+LogLevel: 1
+# Speed up by caching external requests
+CacheExpires: 336h
+
+# Ignore some noisy domains or patterns if needed
+IgnoreURLs:
+  - '^mailto:'
+  - '^tel:'
+  - 'https://fonts.googleapis.com/'
+  - 'https://fonts.gstatic.com/'
+
+# Treat these status codes as OK when validating external links
+HTTPHeaders:
+  # Example to set UA if needed
+  # 'User-Agent': 'htmltest'
+
+ExternalTimeout: 20

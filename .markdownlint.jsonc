@@ -1,0 +1,8 @@
+{
+  // Markdownlint configuration
+  "default": true,
+  "MD013": { "line_length": 120 },
+  "MD033": false,
+  "MD041": false,
+  "MD036": false
+}
