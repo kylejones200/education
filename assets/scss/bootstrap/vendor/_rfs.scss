@@ -1,0 +1,23 @@
+// Minimal local stub for Bootstrap's RFS to satisfy theme import.
+// Provides no-op mixins so SCSS compiles without the NPM rfs package.
+
+// Common RFS variables expected by Bootstrap utilities
+$enable-rfs: false !default;
+$rfs-base-value: 1rem !default;
+$rfs-factor: 10 !default;
+$rfs-two-dimensional: false !default;
+$rfs-unit: rem !default;
+$rfs-breakpoint: 1200px !default;
+$rfs-mq-value: (min-width: $rfs-breakpoint) !default;
+
+@function rfs-fluid-value($value) {
+  @return $value;
+}
+
+@mixin rfs($property, $value, $important: false) {
+  #{$property}: $value#{if($important, ' !important', '')};
+}
+
+@mixin font-size($fs, $important: false) {
+  font-size: $fs#{if($important, ' !important', '')};
+}

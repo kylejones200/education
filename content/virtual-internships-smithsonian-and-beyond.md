@@ -1,9 +1,19 @@
 ---
-title: "Virtual Internships (Smithsonian and Beyond)"
-date: 2025-08-21T13:48:46-05:00
-slug: "virtual-internships-smithsonian-and-beyond"
+title: Virtual Internships (Smithsonian and Beyond)
+date: 2025-08-21 13:48:46-05:00
+slug: virtual-internships-smithsonian-and-beyond
 schools: []
-states: ["DC"]
+states:
+- DC
+params:
+  hero_unsplash:
+    image_url: https://images.unsplash.com/photo-1690191793779-ca5132c113c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3OTUzNDN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NTU4ODEzMjd8&ixlib=rb-4.1.0&q=80&w=1080
+    image_alt: a group of people sitting around a table with laptops
+    credit_name: Walls.io
+    credit_profile: https://unsplash.com/@walls_io
+    photo_link: https://unsplash.com/photos/a-group-of-people-sitting-around-a-table-with-laptops-cNGvcAvxHAo
+    photo_id: cNGvcAvxHAo
+    query_used: Virtual Internships (Smithsonian and Beyond)
 ---
 
 

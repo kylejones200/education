@@ -1,0 +1,114 @@
+{{/*
+Shortcode: hero_unsplash
+Usage:
+  {{< hero_unsplash title="Welcome" subtitle="Explore resources"
+      query="education, college" orientation="landscape" height="60vh" >}}
+
+Params:
+- title:      Text heading to show on the hero
+- subtitle:   Optional subheading
+- query:      Unsplash search query (comma-separated keywords)
+- orientation:landscape|portrait|squarish (default: landscape)
+- height:     CSS height for the hero (default: 60vh)
+- emoji:      Emoji string used for fallback (default: 🎓)
+- disable:    If true, skip Unsplash fetch and render emoji fallback
+
+Requires env var UNSPLASH_ACCESS_KEY to be set (in .env locally or repo secret in CI).
+*/}}
+
+{{ $p := .Page.Params.hero_unsplash }}
+{{ $key := getenv "UNSPLASH_ACCESS_KEY" }}
+{{ $sec := lower .Page.Section }}
+{{ $autoDefault := cond (eq $sec "schools") (printf "%s campus" .Page.Title) .Page.Title }}
+{{ $query := cond (ne (.Get "query") "") (.Get "query") (cond (and $p (index $p "query")) (index $p "query") $autoDefault) }}
+{{ $orientation := cond (ne (.Get "orientation") "") (.Get "orientation") (cond (and $p (index $p "orientation")) (index $p "orientation") "landscape") }}
+{{ $height := cond (ne (.Get "height") "") (.Get "height") (cond (and $p (index $p "height")) (index $p "height") "60vh") }}
+{{ $title := cond (ne (.Get "title") "") (.Get "title") (cond (and $p (index $p "title")) (index $p "title") site.Title) }}
+{{ $subtitle := cond (ne (.Get "subtitle") "") (.Get "subtitle") (cond (and $p (index $p "subtitle")) (index $p "subtitle") nil) }}
+{{ $emoji := cond (ne (.Get "emoji") "") (.Get "emoji") (cond (and $p (index $p "emoji")) (index $p "emoji") "🎓") }}
+{{ $disable := or (eq (.Get "disable") true) (and $p (eq (index $p "disable") true)) }}
+{{ $photoId := cond (ne (.Get "photo_id") "") (.Get "photo_id") (cond (and $p (index $p "photo_id")) (index $p "photo_id") nil) }}
+{{ $collections := cond (ne (.Get "collections") "") (.Get "collections") (cond (and $p (index $p "collections")) (index $p "collections") nil) }}
+
+{{/* Prefer pre-fetched values from front matter if available */}}
+{{ $prefetchedUrl := cond (and $p (index $p "image_url")) (index $p "image_url") nil }}
+{{ $prefetchedAlt := cond (and $p (index $p "image_alt")) (index $p "image_alt") $query }}
+{{ $prefetchCreditName := cond (and $p (index $p "credit_name")) (index $p "credit_name") nil }}
+{{ $prefetchCreditProfile := cond (and $p (index $p "credit_profile")) (index $p "credit_profile") "https://unsplash.com" }}
+{{ $prefetchPhotoLink := cond (and $p (index $p "photo_link")) (index $p "photo_link") "https://unsplash.com" }}
+
+{{ if $prefetchedUrl }}
+  <section class="hero hero--unsplash" style="position: relative; height: {{ $height }};">
+    <img src="{{ $prefetchedUrl }}" alt="{{ $prefetchedAlt }}" style="object-fit: cover; width: 100%; height: 100%; display: block;" />
+    <div class="hero__overlay" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35));"></div>
+    <div class="hero__content" style="position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: white; padding: 1rem;">
+      <div>
+        <h1 style="margin: 0 0 .5rem 0;">{{ $title }}</h1>
+        {{ with $subtitle }}<p style="margin: 0; font-size: 1.125rem; opacity: .95;">{{ . }}</p>{{ end }}
+        {{ with $prefetchCreditName }}
+          <p style="margin-top: .75rem; font-size: .8rem; opacity: .85;">
+            Photo by <a href="{{ $prefetchCreditProfile }}?utm_source={{ site.Title | urlize }}&utm_medium=referral" style="color: #fff; text-decoration: underline;">{{ . }}</a>
+            on <a href="{{ $prefetchPhotoLink }}?utm_source={{ site.Title | urlize }}&utm_medium=referral" style="color: #fff; text-decoration: underline;">Unsplash</a>
+          </p>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ else if or (not $key) $disable }}
+  <div class="hero hero--fallback" style="padding: 4rem 1rem; background: #f6f7ff; color: #2f2f41;">
+    <div class="container" style="text-align:center;">
+      <div style="font-size: 4rem; line-height: 1;">{{ $emoji }}</div>
+      <h1 style="margin: 0 0 0.5rem 0;">{{ $title }}</h1>
+      {{ with $subtitle }}<p style="margin: 0;">{{ . }}</p>{{ end }}
+      {{ if not $key }}
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Set UNSPLASH_ACCESS_KEY to enable Unsplash images.</p>
+      {{ end }}
+    </div>
+  </div>
+{{ else }}
+  {{/* Build Unsplash request URL: specific photo by ID takes precedence; otherwise random by collections or query */}}
+  {{ $photoUrl := cond $photoId (printf "https://api.unsplash.com/photos/%s?client_id=%s" $photoId $key) nil }}
+  {{ $randomBase := "https://api.unsplash.com/photos/random" }}
+  {{ $randUrl := printf "%s?orientation=%s&content_filter=high&client_id=%s" $randomBase $orientation $key }}
+  {{ if $collections }}
+    {{ $randUrl = printf "%s&collections=%s" $randUrl (urlquery $collections) }}
+  {{ else }}
+    {{ $randUrl = printf "%s&query=%s" $randUrl (urlquery $query) }}
+  {{ end }}
+  {{ $url := cond $photoId $photoUrl $randUrl }}
+  {{ with getJSON $url }}
+    {{/* Handle both array (when count used by API defaults) and single object */}}
+    {{ $photo := (cond (reflect.IsSlice .) (index . 0) .) }}
+    {{ $img := index $photo "urls" }}
+    {{ $full := index $img "regular" | default (index $img "full") }}
+    {{ $alt := (index $photo "alt_description") | default $query }}
+    {{ $user := index $photo "user" }}
+    {{ $name := index $user "name" }}
+    {{ $userLink := (index $user "links") }}
+    {{ $profile := (cond (and $userLink (index $userLink "html")) (index $userLink "html") "https://unsplash.com") }}
+    {{ $photoLink := (index (index $photo "links") "html") | default "https://unsplash.com" }}
+
+    <section class="hero hero--unsplash" style="position: relative; height: {{ $height }};">
+      <img src="{{ $full }}" alt="{{ $alt }}" style="object-fit: cover; width: 100%; height: 100%; display: block;" />
+      <div class="hero__overlay" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35));"></div>
+      <div class="hero__content" style="position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: white; padding: 1rem;">
+        <div>
+          <h1 style="margin: 0 0 .5rem 0;">{{ $title }}</h1>
+          {{ with $subtitle }}<p style="margin: 0; font-size: 1.125rem; opacity: .95;">{{ . }}</p>{{ end }}
+          <p style="margin-top: .75rem; font-size: .8rem; opacity: .85;">
+            Photo by <a href="{{ $profile }}?utm_source={{ site.Title | urlize }}&utm_medium=referral" style="color: #fff; text-decoration: underline;">{{ $name }}</a>
+            on <a href="{{ $photoLink }}?utm_source={{ site.Title | urlize }}&utm_medium=referral" style="color: #fff; text-decoration: underline;">Unsplash</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  {{ else }}
+    <div class="hero hero--fallback" style="padding: 4rem 1rem; background: #f6f7ff; color: #2f2f41;">
+      <div class="container" style="text-align:center;">
+        <div style="font-size: 4rem; line-height: 1;">{{ $emoji }}</div>
+        <h1 style="margin: 0 0 0.5rem 0;">{{ $title }}</h1>
+        {{ with $subtitle }}<p style="margin: 0;">{{ . }}</p>{{ end }}
+      </div>
+    </div>
+  {{ end }}
+{{ end }}

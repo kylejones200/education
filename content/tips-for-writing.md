@@ -1,9 +1,18 @@
 ---
-title: "How I Learned to Become a Better Writer"
-date: 2025-08-21T14:23:47-05:00
-slug: "how-i-learned-to-become-a-better-writer"
+title: How I Learned to Become a Better Writer
+date: 2025-08-21 14:23:47-05:00
+slug: how-i-learned-to-become-a-better-writer
 schools: []
 states: []
+params:
+  hero_unsplash:
+    image_url: https://images.unsplash.com/photo-1585771742132-7d18efffe607?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3OTUzNDN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NTU4ODEzMjd8&ixlib=rb-4.1.0&q=80&w=1080
+    image_alt: black pen on white book page
+    credit_name: Grianghraf
+    credit_profile: https://unsplash.com/@grianghraf
+    photo_link: https://unsplash.com/photos/black-pen-on-white-book-page-PJh9WB5mYIE
+    photo_id: PJh9WB5mYIE
+    query_used: How I Learned to Become a Better Writer
 ---
 
 Students have to produce written deliverables like essays, case analyses, and reports. While the technical content is important, the quality of our writing can make a big difference in how effectively we communicate our ideas.

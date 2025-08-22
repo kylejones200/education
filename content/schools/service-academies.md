@@ -1,9 +1,28 @@
 ---
-title: "Service Academies"
-date: 2025-08-21T13:48:46-05:00
-slug: "service-academies"
-schools: ["United States Military Academy", "United States Naval Academy", "United States Air Force Academy", "United States Coast Guard Academy", "United States Merchant Marine Academy"]
-states: ["NY", "MD", "CO", "CT", "NY"]
+title: Service Academies
+date: 2025-08-21 13:48:46-05:00
+slug: service-academies
+schools:
+- United States Military Academy
+- United States Naval Academy
+- United States Air Force Academy
+- United States Coast Guard Academy
+- United States Merchant Marine Academy
+states:
+- NY
+- MD
+- CO
+- CT
+- NY
+params:
+  hero_unsplash:
+    image_url: https://images.unsplash.com/photo-1719124699613-f8ea378707f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3OTUzNDN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NTU4ODEzMjZ8&ixlib=rb-4.1.0&q=80&w=1080
+    image_alt: A large building with a lot of trees around it
+    credit_name: Boris Busorgin
+    credit_profile: https://unsplash.com/@borbus
+    photo_link: https://unsplash.com/photos/a-large-building-with-a-lot-of-trees-around-it-e4EReiczmfQ
+    photo_id: e4EReiczmfQ
+    query_used: Service Academies campus
 ---
 
 

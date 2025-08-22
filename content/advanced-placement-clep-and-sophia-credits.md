@@ -1,9 +1,18 @@
 ---
-title: "Advanced Placement, CLEP, and Sophia Credits"
-date: 2025-08-21T13:48:46-05:00
-slug: "advanced-placement-clep-and-sophia-credits"
+title: Advanced Placement, CLEP, and Sophia Credits
+date: 2025-08-21 13:48:46-05:00
+slug: advanced-placement-clep-and-sophia-credits
 schools: []
 states: []
+params:
+  hero_unsplash:
+    image_url: https://images.unsplash.com/photo-1656648152722-604146a55279?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3OTUzNDN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NTU4ODEzMjJ8&ixlib=rb-4.1.0&q=80&w=1080
+    image_alt: a woman wearing a graduation cap and gown
+    credit_name: Melanie Rosillo Galvan
+    credit_profile: https://unsplash.com/@meroga_
+    photo_link: https://unsplash.com/photos/a-woman-wearing-a-graduation-cap-and-gown-GK5t6lQR-sI
+    photo_id: GK5t6lQR-sI
+    query_used: Advanced Placement, CLEP, and Sophia Credits
 ---
 
 

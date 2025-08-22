@@ -1,9 +1,18 @@
 ---
-title: "Dishing on Graduate Schools in Policy and International Affairs"
-date: 2025-08-21T13:48:46-05:00
-slug: "dishing-on-graduate-schools-in-policy-and-international-affairs"
+title: Dishing on Graduate Schools in Policy and International Affairs
+date: 2025-08-21 13:48:46-05:00
+slug: dishing-on-graduate-schools-in-policy-and-international-affairs
 schools: []
 states: []
+params:
+  hero_unsplash:
+    image_url: https://images.unsplash.com/photo-1754844816831-f09fa390fa54?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3OTUzNDN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NTU4ODEzMjV8&ixlib=rb-4.1.0&q=80&w=1080
+    image_alt: Trees frame a historic brick building on a campus.
+    credit_name: Jonathan Vargas
+    credit_profile: https://unsplash.com/@johnvargas14
+    photo_link: https://unsplash.com/photos/trees-frame-a-historic-brick-building-on-a-campus-ntX81acdZag
+    photo_id: ntX81acdZag
+    query_used: Dishing on Graduate Schools in Policy and International Affairs campus
 ---
 
 Choosing a graduate school in public policy or international affairs is not simple. Each program has its strengths and weaknesses, and much depends on what a student values: academic rigor, professional networking, financial aid, or location. Here are impressions of some of the leading schools, drawn from firsthand experience and conversations with friends and colleagues.

@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://kylejones200.github.io/education/"
 languageCode = "en-us"
 title = "Education"
 
@@ -13,6 +13,10 @@ title = "Education"
   # Optional: set a default description used in meta tags
   description = "Resources and guidance on education, colleges, and programs."
 
+  # Favicon paths (used by some themes to render <link rel="icon"> automatically)
+  favicon = "favicon.svg"
+  favicon_ico = "favicon.ico"
+
   [params.fonts]
     # sets the google font link in layouts/partials/google-fonts.html
     google_fonts = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Source+Sans+Pro:wght@400;700&display=swap'
@@ -26,6 +30,22 @@ title = "Education"
     white_offset = "#f6f7ff"
     grey = "#5C5A5A"
 
+  # Contact form configuration
+  [params.contact]
+    # EITHER set a Formspree endpoint to receive emails via a hosted form service:
+    # formspree_endpoint = "https://formspree.io/f/your_form_id"
+    # OR set a direct email to show a mailto button instead of a form:
+    email = "kyle@kyletjones.com"
+    # After submit, redirect to this page (we create /thanks/ below):
+    redirect = "/thanks/"
+
 [markup]
   [markup.goldmark.renderer]
     unsafe = true
+
+# Add About to the main menu (Serif theme supports menu.main)
+[menu]
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 50

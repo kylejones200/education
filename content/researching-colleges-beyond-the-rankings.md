@@ -1,9 +1,18 @@
 ---
-title: "Researching Colleges: Beyond the Rankings"
-date: 2025-08-21T13:48:46-05:00
-slug: "researching-colleges-beyond-the-rankings"
+title: 'Researching Colleges: Beyond the Rankings'
+date: 2025-08-21 13:48:46-05:00
+slug: researching-colleges-beyond-the-rankings
 schools: []
 states: []
+params:
+  hero_unsplash:
+    image_url: https://images.unsplash.com/photo-1530230232805-b2f53ae9ce11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3OTUzNDN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NTU4ODEzMjR8&ixlib=rb-4.1.0&q=80&w=1080
+    image_alt: stairs worm-eye photography
+    credit_name: Paul Wong
+    credit_profile: https://unsplash.com/@paul_wong
+    photo_link: https://unsplash.com/photos/stairs-worm-eye-photography-TRKF8hFf1f8
+    photo_id: TRKF8hFf1f8
+    query_used: 'Researching Colleges: Beyond the Rankings'
 ---
 
 

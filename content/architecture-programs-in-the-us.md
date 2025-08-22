@@ -1,9 +1,22 @@
 ---
-title: "Architecture Programs in the U.S."
-date: 2025-08-21T13:48:46-05:00
-slug: "architecture-programs-in-the-us"
-schools: ["University of Oklahoma", "Kansas State University"]
-states: ["OK", "KS"]
+title: Architecture Programs in the U.S.
+date: 2025-08-21 13:48:46-05:00
+slug: architecture-programs-in-the-us
+schools:
+- University of Oklahoma
+- Kansas State University
+states:
+- OK
+- KS
+params:
+  hero_unsplash:
+    image_url: https://images.unsplash.com/photo-1597646279147-e1b11b985a52?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3OTUzNDN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NTU4ODEzMjJ8&ixlib=rb-4.1.0&q=80&w=1080
+    image_alt: white concrete building under blue sky during daytime
+    credit_name: "Simon \u015Alusarski"
+    credit_profile: https://unsplash.com/@imsimon
+    photo_link: https://unsplash.com/photos/white-concrete-building-under-blue-sky-during-daytime-XHHPPDdz8KU
+    photo_id: XHHPPDdz8KU
+    query_used: Architecture Programs in the U.S.
 ---
 
 

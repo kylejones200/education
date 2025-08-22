@@ -1,9 +1,18 @@
 ---
-title: "Going to School While Working Full Time"
-date: 2025-08-21T14:17:56-05:00
-slug: "going-to-school-while-working-full-time"
+title: Going to School While Working Full Time
+date: 2025-08-21 14:17:56-05:00
+slug: going-to-school-while-working-full-time
 schools: []
 states: []
+params:
+  hero_unsplash:
+    image_url: https://images.unsplash.com/photo-1678775318591-55bc85cbeda4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3OTUzNDN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NTU4ODEzMjF8&ixlib=rb-4.1.0&q=80&w=1080
+    image_alt: a woman standing on a bus looking out the window
+    credit_name: Oleksii Piekhov
+    credit_profile: https://unsplash.com/@opiekhov
+    photo_link: https://unsplash.com/photos/a-woman-standing-on-a-bus-looking-out-the-window-w1cka--TnY8
+    photo_id: w1cka--TnY8
+    query_used: Going to School While Working Full Time
 ---
 
 Many employers provide the opportunity to continue my education with support from the company.  I don't know what it is, but I've always loved school and had been dreaming of returning to school from the day after my graduation.

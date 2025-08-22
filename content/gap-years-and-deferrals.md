@@ -1,9 +1,20 @@
 ---
-title: "Gap Years and Deferrals"
-date: 2025-08-21T13:48:46-05:00
-slug: "gap-years-and-deferrals"
-schools: ["Princeton University"]
-states: ["NJ"]
+title: Gap Years and Deferrals
+date: 2025-08-21 13:48:46-05:00
+slug: gap-years-and-deferrals
+schools:
+- Princeton University
+states:
+- NJ
+params:
+  hero_unsplash:
+    image_url: https://images.unsplash.com/27/grass-trek.jpg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3OTUzNDN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NTU4ODEzMjN8&ixlib=rb-4.1.0&q=80&w=1080
+    image_alt: bare trees surrounded by green grass field
+    credit_name: Jon Flobrant
+    credit_profile: https://unsplash.com/@jonflobrant
+    photo_link: https://unsplash.com/photos/bare-trees-surrounded-by-green-grass-field-Xg1e5bR_bL4
+    photo_id: Xg1e5bR_bL4
+    query_used: Gap Years and Deferrals
 ---
 
 ## Gap Years and Deferrals

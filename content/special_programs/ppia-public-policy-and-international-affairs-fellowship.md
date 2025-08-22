@@ -1,9 +1,24 @@
 ---
-title: "Public Policy and International Affairs Fellowship (PPIA)"
-date: 2025-08-21T13:48:46-05:00
-slug: "ppia-public-policy-and-international-affairs-fellowship"
-schools: ["Princeton University", "University of Michigan", "University of California, Berkeley"]
-states: ["NJ", "MI", "CA"]
+title: Public Policy and International Affairs Fellowship (PPIA)
+date: 2025-08-21 13:48:46-05:00
+slug: ppia-public-policy-and-international-affairs-fellowship
+schools:
+- Princeton University
+- University of Michigan
+- University of California, Berkeley
+states:
+- NJ
+- MI
+- CA
+params:
+  hero_unsplash:
+    image_url: https://images.unsplash.com/photo-1676109957187-c50264ae872b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3OTUzNDN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NTU4ODEzMjZ8&ixlib=rb-4.1.0&q=80&w=1080
+    image_alt: a large white building surrounded by trees and flowers
+    credit_name: Olesia Libra
+    credit_profile: https://unsplash.com/@olesia_libra
+    photo_link: https://unsplash.com/photos/a-large-white-building-surrounded-by-trees-and-flowers-fzv8QJdEOWA
+    photo_id: fzv8QJdEOWA
+    query_used: Public Policy and International Affairs Fellowship (PPIA)
 ---
 
 For students interested in government, international affairs, or public service, the [Public Policy and International Affairs (PPIA) Fellowship](https://www.ppiaprogram.org/) provides a pathway into graduate study. This program selects rising juniors from across the country and immerses them in an intensive summer of policy training. Host campuses include [Princeton](https://www.princeton.edu/), the [University of Michigan](https://www.umich.edu/), and [UC Berkeley](https://www.berkeley.edu/).

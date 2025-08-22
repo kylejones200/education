@@ -1,0 +1,62 @@
+name: Prefetch Unsplash Hero Data
+
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Overwrite existing image_url fields"
+        type: boolean
+        default: true
+      paths:
+        description: "Optional space-separated list of files/dirs under content/ to process"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  prefetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install -U pip
+          pip install -r requirements.txt
+
+      - name: Run prefetch script
+        env:
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+        run: |
+          set -euo pipefail
+          ARGS=""
+          if [ -n "${{ inputs.paths }}" ]; then
+            ARGS="${{ inputs.paths }}"
+          fi
+          if [ "${{ inputs.force }}" = "true" ]; then
+            ARGS="$ARGS --force"
+          fi
+          python scripts/prefetch_unsplash.py $ARGS
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore(prefetch): update hero image front matter via Unsplash prefetch"
+          title: "Prefetch Unsplash hero data"
+          body: |
+            This PR updates front matter hero fields using the prefetch script.
+
+            - Uses `UNSPLASH_ACCESS_KEY` from repo secrets
+            - Command args: force=${{ inputs.force }} paths='${{ inputs.paths }}'
+          branch: chore/prefetch-unsplash
+          delete-branch: true
+          labels: prefetch, automation

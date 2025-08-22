@@ -1,0 +1,67 @@
+{{/*
+Contact form shortcode.
+
+Usage:
+  {{< contact_form >}}
+  {{< contact_form endpoint="https://formspree.io/f/xxxx" >}}
+  {{< contact_form email="you@example.com" >}}  <!-- mailto fallback -->
+
+Config (optional) in hugo.toml:
+  [params.contact]
+    formspree_endpoint = "https://formspree.io/f/xxxx"
+    email = "you@example.com"
+    redirect = "/thanks/"
+*/}}
+
+{{ $p := site.Params.contact }}
+{{ $endpoint := .Get "endpoint" | default (cond $p (index $p "formspree_endpoint") nil) }}
+{{ $email := .Get "email" | default (cond $p (index $p "email") nil) }}
+{{ $redirect := .Get "redirect" | default (cond $p (index $p "redirect") "/thanks/") }}
+
+{{ if $endpoint }}
+  <form action="{{ $endpoint }}" method="POST" style="max-width:720px;margin:1rem auto;padding:1rem;border:1px solid #e5e7eb;border-radius:12px;background:#fff;">
+    <h2 style="margin:0 0 .75rem 0;">Contact</h2>
+    <p style="margin:0 0 1rem 0;color:#555;">Have a question or want to get in touch? Send a message below.</p>
+
+    <div style="display:grid;gap:.75rem;">
+      <label style="display:block;">
+        <span style="display:block;font-weight:600;margin-bottom:.25rem;">Your name</span>
+        <input type="text" name="name" required style="width:100%;padding:.6rem .7rem;border:1px solid #d1d5db;border-radius:8px;" />
+      </label>
+
+      <label style="display:block;">
+        <span style="display:block;font-weight:600;margin-bottom:.25rem;">Your email</span>
+        <input type="email" name="email" required style="width:100%;padding:.6rem .7rem;border:1px solid #d1d5db;border-radius:8px;" />
+      </label>
+
+      <label style="display:block;">
+        <span style="display:block;font-weight:600;margin-bottom:.25rem;">Message</span>
+        <textarea name="message" rows="6" required style="width:100%;padding:.6rem .7rem;border:1px solid #d1d5db;border-radius:8px;"></textarea>
+      </label>
+
+      <input type="hidden" name="_subject" value="New inquiry from {{ site.Title }}" />
+      <input type="text" name="_gotcha" style="display:none" />
+      <input type="hidden" name="_redirect" value="{{ $redirect }}" />
+
+      <button type="submit" style="cursor:pointer;background:#1f2937;color:#fff;border:none;border-radius:8px;padding:.7rem 1rem;font-weight:600;">Send message</button>
+    </div>
+
+    <p style="margin:.75rem 0 0 0;font-size:.875rem;color:#6b7280;">Powered by Formspree.</p>
+  </form>
+{{ else if $email }}
+  <div style="max-width:720px;margin:1rem auto;padding:1rem;border:1px solid #e5e7eb;border-radius:12px;background:#fff;text-align:center;">
+    <h2 style="margin:0 0 .5rem 0;">Contact</h2>
+    <p style="margin:0 0 1rem 0;color:#555;">Click below to email us directly.</p>
+    <a href="mailto:{{ $email }}?subject=Inquiry%20from%20{{ site.Title | urlize }}" style="display:inline-block;background:#1f2937;color:#fff;border-radius:8px;padding:.7rem 1rem;text-decoration:none;font-weight:600;">Email {{ $email }}</a>
+    <p style="margin:.75rem 0 0 0;font-size:.875rem;color:#6b7280;">Tip: set params.contact.formspree_endpoint to enable the built-in form.</p>
+  </div>
+{{ else }}
+  <div style="max-width:720px;margin:1rem auto;padding:1rem;border:1px dashed #d1d5db;border-radius:12px;background:#fff;">
+    <h2 style="margin:0 0 .5rem 0;">Contact</h2>
+    <p style="margin:0;color:#555;">No contact endpoint configured. Add one of the following and rebuild:</p>
+    <ul>
+      <li><code>[params.contact] formspree_endpoint = "https://formspree.io/f/xxxx"</code></li>
+      <li><code>[params.contact] email = "you@example.com"</code></li>
+    </ul>
+  </div>
+{{ end }}

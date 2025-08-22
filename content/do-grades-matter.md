@@ -1,9 +1,20 @@
 ---
-title: "Do Grades Matter?"
-date: 2025-08-21T13:48:46-05:00
-slug: "do-grades-matter"
-schools: ["Wake Forest University"]
-states: ["NC"]
+title: Do Grades Matter?
+date: 2025-08-21 13:48:46-05:00
+slug: do-grades-matter
+schools:
+- Wake Forest University
+states:
+- NC
+params:
+  hero_unsplash:
+    image_url: https://images.unsplash.com/photo-1598981457915-aea220950616?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3OTUzNDN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NTU4ODEzMjN8&ixlib=rb-4.1.0&q=80&w=1080
+    image_alt: man in brown sweater sitting on chair
+    credit_name: Jeswin Thomas
+    credit_profile: https://unsplash.com/@jeswinthomas
+    photo_link: https://unsplash.com/photos/man-in-brown-sweater-sitting-on-chair--hgJu2ykh4E
+    photo_id: -hgJu2ykh4E
+    query_used: Do Grades Matter?
 ---
 
 
