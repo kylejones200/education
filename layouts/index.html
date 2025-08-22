@@ -1,8 +1,0 @@
-{{ define "main" }}
-  {{/* Auto-render Unsplash hero from front matter if params.hero_unsplash is set */}}
-  {{ partial "hero_unsplash.html" . }}
-
-  <main class="container content" style="padding: 2rem 1rem;">
-    {{ .Content }}
-  </main>
-{{ end }}

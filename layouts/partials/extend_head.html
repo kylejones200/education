@@ -1,5 +1,80 @@
-{{ with site.Home.OutputFormats.Get "JSON" }}
-<meta name="search-index" content="{{ .RelPermalink }}">
-{{ end }}
+<style>
+  .pm-inline-search{ position: relative; }
+  .pm-inline-search input{
+    width: 220px; max-width: 40vw; padding: .4rem .6rem; border: 1px solid #d1d5db; border-radius: 8px;
+    background: var(--theme) !important;
+  }
+  .pm-inline-results{
+    position: absolute; top: 110%; right: 0; z-index: 50; width: min(560px, 90vw);
+    background: var(--entry); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,.08);
+    display: none; max-height: 60vh; overflow: auto;
+  }
+  .pm-inline-results.open{ display:block; }
+  .pm-inline-results ul{ list-style: none; margin: 0; padding: .25rem; }
+  .pm-inline-results li{ padding: .5rem .6rem; border-radius: 8px; }
+  .pm-inline-results li a{ text-decoration: none; color: inherit; display: block; }
+  .pm-inline-results li:hover{ background: var(--hl); }
+  @media (max-width: 640px){ .pm-inline-search input{ width: 160px; } }
+</style>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
-<script src="{{ "/js/site-search.js" | relURL }}" defer></script>
+<script>
+  (function(){
+    function ready(fn){ if(document.readyState!=='loading'){ fn(); } else { document.addEventListener('DOMContentLoaded', fn); } }
+    ready(function(){
+      var header = document.querySelector('header, .header, header.header');
+      var nav = header ? header.querySelector('nav') || header : null;
+      var mount = nav || header || document.body;
+      if(!mount) return;
+
+      var wrap = document.createElement('div');
+      wrap.className = 'pm-inline-search';
+      wrap.innerHTML = '<input type="search" placeholder="Search..." aria-label="Search" />\
+        <div class="pm-inline-results" role="listbox" aria-label="Search results"><ul></ul></div>';
+
+      // Prefer to place as last item in nav
+      if(nav && nav.lastElementChild && nav.tagName.toLowerCase()==='nav'){
+        nav.appendChild(wrap);
+      } else if(header){
+        header.appendChild(wrap);
+      } else {
+        mount.appendChild(wrap);
+        wrap.style.position='fixed'; wrap.style.top='10px'; wrap.style.right='10px';
+      }
+
+      var input = wrap.querySelector('input');
+      var panel = wrap.querySelector('.pm-inline-results');
+      var list = panel.querySelector('ul');
+      var fuse, data = null, loading=false;
+
+      function fetchIndex(){
+        if(loading || data) return Promise.resolve();
+        loading = true;
+        return fetch('{{ "/index.json" | relURL }}').then(function(r){ return r.json(); }).then(function(json){
+          data = json;
+          fuse = new Fuse(data, { keys:[ 'title', 'summary', 'content' ], threshold: 0.3, ignoreLocation: true });
+        }).catch(function(){ /* no-op */ }).finally(function(){ loading=false; });
+      }
+
+      function render(results){
+        list.innerHTML = '';
+        if(!results || results.length===0){ panel.classList.remove('open'); return; }
+        results.slice(0,8).forEach(function(item){
+          var r = item.item || item;
+          var li = document.createElement('li');
+          li.innerHTML = '<a href="'+ (r.relpermalink || r.permalink) +'"><strong>'+ (r.title||'Untitled') +'</strong><div style="opacity:.75;font-size:.9em;">'+ (r.summary||'') +'</div></a>';
+          list.appendChild(li);
+        });
+        panel.classList.add('open');
+      }
+
+      input.addEventListener('input', function(){
+        var q = this.value.trim();
+        if(!q){ panel.classList.remove('open'); list.innerHTML=''; return; }
+        fetchIndex().then(function(){ if(!fuse) return; render(fuse.search(q)); });
+      });
+      input.addEventListener('focus', function(){ if(list.children.length){ panel.classList.add('open'); } });
+      document.addEventListener('click', function(e){ if(!wrap.contains(e.target)){ panel.classList.remove('open'); }});
+      document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ panel.classList.remove('open'); }});
+    });
+  })();
+</script>

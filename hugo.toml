@@ -47,6 +47,38 @@ title = "Education"
     white_offset = "#f6f7ff"
     grey = "#5C5A5A"
 
+  # ---- PaperMod options ----
+  # Theme behavior
+  defaultTheme = "auto"          # "light", "dark", or "auto"
+  disableThemeToggle = false
+
+  # Post/article UX
+  ShowReadingTime = true
+  ShowBreadCrumbs = true
+  ShowPostNavLinks = true
+  ShowShareButtons = false
+  ShowCodeCopyButtons = true
+
+  # Table of Contents
+  ShowToc = true
+  TocOpen = false                 # set true to have TOC expanded by default
+  UseHugoToc = true               # use Hugo's built-in TOC rendering
+
+  # Listing/section options
+  ShowRssButtonInSectionTermList = true
+
+  # Cover/featured images
+  [params.cover]
+    hidden = false                # show cover on list and single
+    hiddenInList = false
+    hiddenInSingle = false
+    linkFullImages = true
+
+  # Home page intro (shown on the homepage above the list)
+  [params.homeInfoParams]
+    Title = "Education Resources"
+    Content = "Guides on schools, scholarships, communications, and more."
+
   # Contact form configuration
   [params.contact]
     # EITHER set a Formspree endpoint to receive emails via a hosted form service:
