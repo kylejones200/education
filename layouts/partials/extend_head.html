@@ -1,0 +1,5 @@
+{{ with site.Home.OutputFormats.Get "JSON" }}
+<meta name="search-index" content="{{ .RelPermalink }}">
+{{ end }}
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+<script src="{{ "/js/site-search.js" | relURL }}" defer></script>
