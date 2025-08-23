@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+
+    {{- /* Google Fonts from params */ -}}
+    {{ with site.Params.fonts.google_fonts }}
+      <link href="{{ . }}" rel="stylesheet">
+    {{ end }}
+
+    {{- /* CSS variables for theme colors from params */ -}}
+    <style>
+      :root{
+        --color-primary: {{ with site.Params.colors.primary }}{{ . }}{{ else }}#3b82f6{{ end }};
+        --color-black: {{ with site.Params.colors.black }}{{ . }}{{ else }}#111827{{ end }};
+        --color-white: {{ with site.Params.colors.white }}{{ . }}{{ else }}#ffffff{{ end }};
+        --color-white-offset: {{ with site.Params.colors.white_offset }}{{ . }}{{ else }}#f9fafb{{ end }};
+        --color-grey: {{ with site.Params.colors.grey }}{{ . }}{{ else }}#6b7280{{ end }};
+      }
+    </style>
+
+    {{- /* Main stylesheet via Hugo Pipes */ -}}
+    {{ $scss := resources.Get "scss/main.scss" | toCSS (dict "targetPath" "css/main.css") | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $scss.RelPermalink }}" integrity="{{ $scss.Data.Integrity }}" />
+
+    {{- /* Custom head partial: meta, favicons, OG, search, etc. */ -}}
+    {{ partial "head/custom.html" . }}
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+        {{ if site.Menus.main }}
+        <nav class="site-nav" aria-label="Main">
+          <button class="nav-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+          <ul id="menu" class="menu">
+            {{ range site.Menus.main }}
+              <li><a href="{{ .URL }}"{{ if or (eq .URL $.RelPermalink) (eq .URL $.Permalink) }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+            {{ end }}
+          </ul>
+        </nav>
+        {{ end }}
+      </div>
+    </header>
+
+    <main id="content" class="site-main">
+      {{ block "main" . }}{{ end }}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© {{ now.Year }} {{ site.Title }}</p>
+      </div>
+    </footer>
+
+    <script>
+      // Simple mobile nav toggle
+      (function(){
+        var btn = document.querySelector('.nav-toggle');
+        var menu = document.getElementById('menu');
+        if(!btn || !menu) return;
+        btn.addEventListener('click', function(){
+          var expanded = this.getAttribute('aria-expanded') === 'true';
+          this.setAttribute('aria-expanded', String(!expanded));
+          menu.classList.toggle('open');
+        });
+      })();
+    </script>
+  </body>
+</html>
