@@ -1,6 +1,6 @@
 # Education Site
 
-A Hugo static site for education resources, colleges, scholarships, and programs. Uses the Zerostatic Serif theme via Hugo Modules.
+A Hugo static site for education resources, colleges, scholarships, and programs. Uses custom layouts and SCSS (no external Hugo theme).
 
 ## Develop
 
@@ -35,5 +35,7 @@ A Hugo static site for education resources, colleges, scholarships, and programs
 - Robots at `static/robots.txt`.
 
 ## Notes
-- Theme: `github.com/zerostaticthemes/hugo-serif-theme` via Go Modules (`go.mod`).
+- Theme: none — site uses `layouts/_default/baseof.html` and custom partials/shortcodes.
+- Inline search: Fuse.js is now loaded by the `ask` shortcode, so the widget works anywhere without extra includes.
 - No backend required. Optional Unsplash prefetch script at `scripts/prefetch_unsplash.py` (not required at build time).
+
